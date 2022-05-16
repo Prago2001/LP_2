@@ -1,0 +1,36 @@
+##Class
+
+public class Email {
+    public void sendMail(String [] addresses, String [] subjects, String [] messages) {
+        Messaging.SingleEmailMessage [] emails = new Messaging.SingleEmailMessage[]{};
+        Integer totalMails = addresses.size();
+        for(Integer i=0; i < totalMails; i++){
+        Messaging.SingleEmailMessage email = new Messaging.SingleEmailMessage();
+        email.setSubject(subjects[i]);
+        email.setToAddresses(new List<String> { addresses[i] });
+        email.setPlainTextBody(messages[i]);
+        emails.add(email);
+        }
+	Messaging.sendEmail(emails);
+}
+}
+
+## Test Case
+
+String address = 'pratik.gokhale1@gmail.com';
+String subject = 'Hello World';
+String body = 'Testing Application written in Apex programming language';
+String address1 = 'pranav.gokhale95@gmail.com';
+String subject1 = 'Saleforce Application';
+String body1 = 'Test Body....';
+String[] addresses = new String[]{},
+subjects = new String[]{},
+messages = new String[]{}
+;addresses.add(address);
+subjects.add(subject);
+messages.add(body);
+addresses.add(address1);
+subjects.add(subject1);
+messages.add(body1);
+Email em = new Email();
+em.sendMail(addresses, subjects, messages);
